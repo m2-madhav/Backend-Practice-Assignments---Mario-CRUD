@@ -31,15 +31,19 @@ app.post("/mario", (req, res) => {
     name: req.body.name,
     weight: req.body.weight
   });
-  mr.save().then((mario) => {
-    if (!mario.name) {
+  mr.save()
+    .then((mario) => {
+      /*if (!mario.name) {
       res.status(400).send("Name is missing");
       return;
     } else if (!mario.weight) {
       res.status(400).send("Weight is missing");
-    }
-    res.status(201).send(mario);
-  });
+    }*/
+      res.status(201).json(mario);
+    })
+    .catch((err) => {
+      res.status(400).json({ message: "either name or weight is missing" });
+    });
 });
 
 /*app.put('/mario/:id',(req,res)=>{
