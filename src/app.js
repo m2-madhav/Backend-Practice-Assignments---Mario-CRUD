@@ -64,8 +64,8 @@ app.delete("/mario/:id", (req, res) => {
   const id = req.params.id;
   marioModel
     .findByIdAndDelete(id)
-    .then(() => res.status(200).send("character deleted"))
-    .catch((err) => res.status(400).send({ message: err.message }));
+    .then(() => res.status(200).json({ message: "character deleted" }))
+    .catch((err) => res.status(400).json({ message: err.message }));
   /*
   marioModel.findByIdAndDelete(id,function(result){
       if(!result){
